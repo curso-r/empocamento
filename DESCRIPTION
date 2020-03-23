@@ -1,15 +1,24 @@
 Package: empocamento
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Ferramentas Para Analisar Empoçamentos nas Unidades Gestoras Estaduais e Federais do Brasil Por Meio Da Base de Dados do SIAF.
+Version: 1.0
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Athos",
+           family = "Damiani",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: What license it uses
+           email = "adamiani@rseis.com.br")
+Description: Ferramentas para analisar as disponibilidades líquidas das unidades gestoras estaduais e federais do Brasil para identificar problemas de empoçamentos orcamentários.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-URL: https://github.com/Athospd/empocamento
-BugReports: https://github.com/Athospd/empocamento/issues
+URL: https://github.com/curso-r/empocamento
+BugReports: https://github.com/curso-r/empocamento/issues
+RoxygenNote: 6.1.1
+Imports: 
+    dplyr,
+    purrr,
+    digest,
+    tidyr,
+    padr,
+    stringr,
+    magrittr,
+    workflows

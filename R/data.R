@@ -1,0 +1,67 @@
+#' Movimentações diárias de 187 UGs em 29 Fontes de Recursos do Ministério da Justiça.
+#'
+#' Banco de dados contendo as séries diárias dos itens de limites de saque ("LIMITES DE SAQUE (OFSS, DIVIDA, BACEN E PREV)"),
+#' pagamentos totais ("PAGAMENTOS TOTAIS (EXERCICIO E RAP)") e obrigações a pagar ("VALORES LIQUIDADOS A PAGAR (EXERCICIO + RP)")
+#' do período de janeiro de 2017 a novembro de 2019 de 898 pares de "UG/Fonte de Recursos" do Ministério da Justiça.
+#'
+#' @format Um data frame com 357.457 linhas e 20 variaveis:
+#' \describe{
+#'   \item{ID_ANO_LANC}{}
+#'   \item{ID_MES_LANC}{}
+#'   \item{ID_DIA_LANC}{}
+#'   \item{NO_DIA_COMPLETO}{}
+#'   \item{ID_ITEM_INFORMACAO}{}
+#'   \item{NO_ITEM_INFORMACAO}{}
+#'   \item{CO_ITEM_INFORMACAO}{}
+#'   \item{ID_FONTE_RECURSO}{}
+#'   \item{CO_FONTE_RECURSO}{}
+#'   \item{NO_FONTE_RECURSO}{}
+#'   \item{ID_ORGAO_MAXI}{}
+#'   \item{CO_ORGAO_MAXI}{}
+#'   \item{NO_ORGAO_MAXI}{}
+#'   \item{ID_ORGAO_UG}{}
+#'   \item{CO_ORGAO}{}
+#'   \item{NO_ORGAO}{}
+#'   \item{ID_UG}{}
+#'   \item{CO_UG}{}
+#'   \item{NO_UG}{}
+#'   \item{SALDORITEMINFORMAODIALANAMENT}{}
+#'
+#' }
+"movimentacoes_diarias_mj"
+
+#' Movimentações diárias de 912 UGs em 45 Fontes de Recursos do Ministério da Educação.
+#'
+#' Banco de dados contendo as séries diárias dos itens de limites de saque ("LIMITES DE SAQUE (OFSS, DIVIDA, BACEN E PREV)"),
+#' pagamentos totais ("PAGAMENTOS TOTAIS (EXERCICIO E RAP)") e obrigações a pagar ("VALORES LIQUIDADOS A PAGAR (EXERCICIO + RP)")
+#' do período de janeiro de 2017 a novembro de 2019 de 7.011 pares de "UG/Fonte de Recursos" do Ministério da Educação.
+#'
+#' @format Um data frame com 2.341.285 linhas e 20 variaveis:
+#' \describe{
+#'   \item{ID_ANO_LANC}{}
+#'   \item{ID_MES_LANC}{}
+#'   \item{ID_DIA_LANC}{}
+#'   \item{NO_DIA_COMPLETO}{}
+#'   \item{ID_ITEM_INFORMACAO}{}
+#'   \item{NO_ITEM_INFORMACAO}{}
+#'   \item{CO_ITEM_INFORMACAO}{}
+#'   \item{ID_FONTE_RECURSO}{}
+#'   \item{CO_FONTE_RECURSO}{}
+#'   \item{NO_FONTE_RECURSO}{}
+#'   \item{ID_ORGAO_MAXI}{}
+#'   \item{CO_ORGAO_MAXI}{}
+#'   \item{NO_ORGAO_MAXI}{}
+#'   \item{ID_ORGAO_UG}{}
+#'   \item{CO_ORGAO}{}
+#'   \item{NO_ORGAO}{}
+#'   \item{ID_UG}{}
+#'   \item{CO_UG}{}
+#'   \item{NO_UG}{}
+#'   \item{SALDORITEMINFORMAODIALANAMENT}{}
+#'
+#' }
+"movimentacoes_diarias_mec"
+
+
+#' Modelo de Suspeita de Empoçamento
+"modelo_suspeita_de_empocamento_v01"
