@@ -8,6 +8,7 @@ explorar <- function(dados_preparados_mas_sem_indicadores) {
   requireNamespace("reactable")
   requireNamespace("highcharter")
   requireNamespace("shinyWidgets")
+  requireNamespace("purrr")
   requireNamespace("magrittr")
   requireNamespace("xts")
 

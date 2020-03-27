@@ -1,5 +1,5 @@
 indicadores_disponiveis <- ""
-dia_mais_recente <- dados_preparados_mas_sem_indicadores$series_temporais %>% map(~max(.x$NO_DIA_COMPLETO_dmy)) %>% reduce(max)
+dia_mais_recente <- dados_preparados_mas_sem_indicadores$series_temporais %>% purrr::map(~max(.x$NO_DIA_COMPLETO_dmy)) %>% reduce(max)
 um_ano_atras <- dia_mais_recente - lubridate::days(365)
 
 ui <- fluidPage(

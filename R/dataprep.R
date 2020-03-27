@@ -62,7 +62,6 @@ gera_series_diarias_para_os_tres_itens <- function(dados) {
 #'
 gera_disponibilidades_liquidas_diarias <- function(lista_dos_tres_itens) {
 
-  browser()
   lista_dos_tres_itens$dados$saldo_diario %>%
     dplyr::rename(
       saldo_diario = SALDORITEMINFORMAODIALANAMENT,
