@@ -1,0 +1,76 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+  knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# empocamento
+
+## Instalação
+
+``` r
+# install.packages("devtools")
+devtools::install_github("curso-r/empocamento")
+```
+
+## Exemplos
+
+O pacote traz extrações de movimentações diárias dos ministérios da Justiça (`movimentacoes_diarias_mj`) e da Educação (`movimentacoes_diarias_mec`).
+A série histórica são dos itens: 
+
+- limite de saque (`LIMITES DE SAQUE (OFSS, DIVIDA, BACEN E PREV)`);
+- obrigações a pagar (`VALORES LIQUIDADOS A PAGAR (EXERCICIO + RP)`); e
+- pagamentos (`PAGAMENTOS TOTAIS (EXERCICIO E RAP)`)
+
+```{r example, warning=FALSE, message=FALSE, fig.height=2, fig.width=8}
+library(dplyr)
+library(ggplot2)
+library(empocamento)
+
+series_mj <- prepara(movimentacoes_diarias_mj)
+```
+
+Exemplo de gráfico de disponibilidade líquida para
+
+- NO_UG: "ACADEMIA NACIONAL DA POLICIA RODOV. FEDERAL"
+- NO_FONTE_RECURSO: "RECURSOS NAO-FINANCEIROS DIRETAM. ARRECADADOS"
+
+```{r}
+series_mj_filtrada <- series_mj %>%
+  filter(
+    NO_ORGAO_MAXI == "MINISTERIO DA JUSTICA E SEGURANCA PUBLICA",
+    NO_ORGAO == "DEPARTAMENTO DE POLICIA RODOVIARIA FEDERAL/MJ",
+    NO_UG == "ACADEMIA NACIONAL DA POLICIA RODOV. FEDERAL",
+    NO_FONTE_RECURSO == "RECURSOS NAO-FINANCEIROS DIRETAM. ARRECADADOS"
+  )
+
+series_mj_filtrada$series_temporais[[1]] %>%
+  ggplot(aes(x = NO_DIA_COMPLETO_dmy, y = disponibilidade_liquida)) +
+  geom_line()
+```
+
+
+Explorar as séries de fluxo de caixa com interface gráfica (Shiny app)
+
+```{r, eval=FALSE}
+explorar(series_mj)
+```
+
+O pacote traz função pronta para extrair alguns descritores sobre o perfil histórico de cada UG-FONTE.
+
+```{r, warning=FALSE, message=FALSE}
+descritores_mj <- adiciona_descritores(series_mj)
+glimpse(descritores_mj)
+```
+
+
+
