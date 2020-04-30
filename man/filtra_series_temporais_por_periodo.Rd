@@ -14,3 +14,9 @@ filtra_series_temporais_por_periodo(dados_preparados, periodo)
 \description{
 Filtra Séries Temporais Por Período
 }
+\examples{
+
+series_mj <- empocamento::movimentacoes_diarias_mj \%>\%
+  prepara() \%>\%
+  filtra_series_temporais_por_periodo(c("2019-01-01", "2019-11-01"))
+}

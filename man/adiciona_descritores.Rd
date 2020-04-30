@@ -4,10 +4,15 @@
 \alias{adiciona_descritores}
 \title{Adiciona Descritores de Perfis de Fluxo de Caixa}
 \usage{
-adiciona_descritores(dados_aninhados, n_dias = 365)
+adiciona_descritores(dados_preparados, n_dias = 365)
 }
 \arguments{
+\item{dados_preparados}{dados preparados pela função \code{\link{prepara}}.}
+
 \item{n_dias}{integer. Número de dias de histórico para considerar no cálculo dos descritores. O padrão é 365 dias.}
+}
+\value{
+
 }
 \description{
 Adiciona Descritores de Perfis de Fluxo de Caixa

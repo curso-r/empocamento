@@ -4,7 +4,8 @@
 \name{movimentacoes_diarias_mec}
 \alias{movimentacoes_diarias_mec}
 \title{Movimentações diárias de 912 UGs em 45 Fontes de Recursos do Ministério da Educação.}
-\format{Um data frame com 2.341.285 linhas e 20 variaveis:
+\format{
+Um data frame com 2.341.285 linhas e 20 variaveis:
 \describe{
   \item{ID_ANO_LANC}{}
   \item{ID_MES_LANC}{}
@@ -27,7 +28,8 @@
   \item{NO_UG}{}
   \item{SALDORITEMINFORMAODIALANAMENT}{}
 
-}}
+}
+}
 \usage{
 movimentacoes_diarias_mec
 }

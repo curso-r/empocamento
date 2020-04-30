@@ -4,7 +4,9 @@
 \name{modelo_suspeita_de_empocamento_v01}
 \alias{modelo_suspeita_de_empocamento_v01}
 \title{Modelo de Suspeita de Empoçamento}
-\format{An object of class \code{workflow} of length 4.}
+\format{
+An object of class \code{workflow} of length 4.
+}
 \usage{
 modelo_suspeita_de_empocamento_v01
 }

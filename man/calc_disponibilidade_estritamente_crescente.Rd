@@ -4,8 +4,10 @@
 \alias{calc_disponibilidade_estritamente_crescente}
 \title{calc_disponibilidade_estritamente_crescente}
 \usage{
-calc_disponibilidade_estritamente_crescente(disponibilidade_liquida,
-  NO_DIA_COMPLETO_dmy)
+calc_disponibilidade_estritamente_crescente(
+  disponibilidade_liquida,
+  NO_DIA_COMPLETO_dmy
+)
 }
 \description{
 calc_disponibilidade_estritamente_crescente

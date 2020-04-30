@@ -81,7 +81,7 @@ calcula_descritores <- function(series_temporais) {
 
 #' Adiciona Descritores de Perfis de Fluxo de Caixa
 #'
-#' @param dados_aninhados
+#' @param dados_preparados dados preparados pela função \code{\link{prepara}}.
 #' @param n_dias integer. Número de dias de histórico para considerar no cálculo dos descritores. O padrão é 365 dias.
 #'
 #' @return
@@ -92,10 +92,10 @@ calcula_descritores <- function(series_temporais) {
 #' series_mj <- movimentacoes_diarias_mj %>%
 #'   prepara() %>%
 #'   adiciona_descritores()
-adiciona_descritores <- function(dados_aninhados, n_dias = 365) {
+adiciona_descritores <- function(dados_preparados, n_dias = 365) {
   requireNamespace("workflows")
 
-  dados_aninhados %>%
+  dados_preparados %>%
     dplyr::mutate(
       series_temporais_crop = purrr::map(series_temporais, ~ {
         .x %>% dplyr::filter(NO_DIA_COMPLETO_dmy >= (max(NO_DIA_COMPLETO_dmy) - lubridate::days(n_dias)))
