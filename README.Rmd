@@ -11,6 +11,8 @@ output: github_document
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+library(ggplot2)
+theme_set( theme_minimal(12))
 ```
 
 # empocamento
@@ -39,12 +41,8 @@ library(empocamento)
 series_mj <- prepara(movimentacoes_diarias_mj)
 ```
 
-Exemplo de gráfico de disponibilidade líquida para
 
-- NO_UG: "ACADEMIA NACIONAL DA POLICIA RODOV. FEDERAL"
-- NO_FONTE_RECURSO: "RECURSOS NAO-FINANCEIROS DIRETAM. ARRECADADOS"
-
-```{r}
+```{r, fig.height=4, eval = FALSE}
 series_mj_filtrada <- series_mj %>%
   filter(
     NO_ORGAO_MAXI == "MINISTERIO DA JUSTICA E SEGURANCA PUBLICA",
@@ -55,7 +53,24 @@ series_mj_filtrada <- series_mj %>%
 
 series_mj_filtrada$series_temporais[[1]] %>%
   ggplot(aes(x = NO_DIA_COMPLETO_dmy, y = disponibilidade_liquida)) +
-  geom_line()
+  geom_line() 
+```
+
+```{r, fig.height=3, echo = FALSE, dpi=300}
+series_mj_filtrada <- series_mj %>%
+  filter(
+    NO_ORGAO_MAXI == "MINISTERIO DA JUSTICA E SEGURANCA PUBLICA",
+    NO_ORGAO == "DEPARTAMENTO DE POLICIA RODOVIARIA FEDERAL/MJ",
+    NO_UG == "ACADEMIA NACIONAL DA POLICIA RODOV. FEDERAL",
+    NO_FONTE_RECURSO == "RECURSOS NAO-FINANCEIROS DIRETAM. ARRECADADOS"
+  )
+
+series_mj_filtrada$series_temporais[[1]] %>%
+  ggplot(aes(x = NO_DIA_COMPLETO_dmy, y = disponibilidade_liquida)) +
+  geom_line(colour = "purple") +
+  labs(y = NULL, x = "Data", title = "Disponibilidade Líquida", subtitle = "ACADEMIA NACIONAL DA POLICIA RODOV. FEDERAL \nRECURSOS NAO-FINANCEIROS DIRETAM. ARRECADADOS") +
+  scale_y_continuous(labels = scales::dollar_format(prefix = "R$", big.mark = ".", decimal.mark = ",")) +
+  scale_x_date(date_breaks = "6 months", date_labels = "%b/%Y")
 ```
 
 

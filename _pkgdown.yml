@@ -1,1 +1,24 @@
 destination: docs
+navbar:
+  structure:
+    left:
+    - home
+    - intro
+    - reference
+    - articles
+    - tutorials
+    - news
+    right: github
+  components:
+    home:
+      icon: fas fa-home fa-lg
+      href: index.html
+    reference:
+      text: Referências
+      href: reference/index.html
+    github:
+      icon: fab fa-github fa-lg
+      href: https://github.com/curso-r/empocamento/
+    articles:
+      text: Artigos
+      href: articles/index.html
