@@ -92,13 +92,8 @@
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">empocamento</span>)
 
 <span class="no">series_mj</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/prepara.html">prepara</a></span>(<span class="no">movimentacoes_diarias_mj</span>)</pre></div>
-<p>Exemplo de gráfico de disponibilidade líquida para</p>
-<ul>
-<li>NO_UG: “ACADEMIA NACIONAL DA POLICIA RODOV. FEDERAL”</li>
-<li>NO_FONTE_RECURSO: “RECURSOS NAO-FINANCEIROS DIRETAM. ARRECADADOS”</li>
-</ul>
-<!-- end list --><div class="sourceCode" id="cb3"><pre class="r"><span class="no">series_mj_filtrada</span> <span class="kw">&lt;-</span> <span class="no">series_mj</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(
+<div class="sourceCode" id="cb3"><pre class="r"><span class="no">series_mj_filtrada</span> <span class="kw">&lt;-</span> <span class="no">series_mj</span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(
     <span class="no">NO_ORGAO_MAXI</span> <span class="kw">==</span> <span class="st">"MINISTERIO DA JUSTICA E SEGURANCA PUBLICA"</span>,
     <span class="no">NO_ORGAO</span> <span class="kw">==</span> <span class="st">"DEPARTAMENTO DE POLICIA RODOVIARIA FEDERAL/MJ"</span>,
     <span class="no">NO_UG</span> <span class="kw">==</span> <span class="st">"ACADEMIA NACIONAL DA POLICIA RODOV. FEDERAL"</span>,
@@ -108,28 +103,29 @@
 <span class="no">series_mj_filtrada</span>$<span class="no">series_temporais</span><span class="kw">[[</span><span class="fl">1</span>]] <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">NO_DIA_COMPLETO_dmy</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">disponibilidade_liquida</span>)) +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>()</pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-2-1.png" width="100%"></p>
+<p><img src="reference/figures/README-unnamed-chunk-3-1.png" width="100%"></p>
 <p>Explorar as séries de fluxo de caixa com interface gráfica (Shiny app)</p>
 <div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="reference/explorar.html">explorar</a></span>(<span class="no">series_mj</span>)</pre></div>
 <p>O pacote traz função pronta para extrair alguns descritores sobre o perfil histórico de cada UG-FONTE.</p>
 <div class="sourceCode" id="cb5"><pre class="r"><span class="no">descritores_mj</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/adiciona_descritores.html">adiciona_descritores</a></span>(<span class="no">series_mj</span>)
-<span class="fu"><a href="https://dplyr.tidyverse.org/reference/reexports.html">glimpse</a></span>(<span class="no">descritores_mj</span>)
-<span class="co">#&gt; Observations: 856</span>
-<span class="co">#&gt; Variables: 14</span>
-<span class="co">#&gt; $ id                                     &lt;chr&gt; "877362ca453c6994eb320a...</span>
-<span class="co">#&gt; $ NO_ORGAO_MAXI                          &lt;chr&gt; "MINISTERIO DA JUSTICA ...</span>
-<span class="co">#&gt; $ NO_UG                                  &lt;chr&gt; "ACADEMIA NACIONAL DA P...</span>
-<span class="co">#&gt; $ NO_ORGAO                               &lt;chr&gt; "DEPARTAMENTO DE POLICI...</span>
-<span class="co">#&gt; $ NO_FONTE_RECURSO                       &lt;chr&gt; "RECURSOS NAO-FINANCEIR...</span>
-<span class="co">#&gt; $ series_temporais                       &lt;list&gt; [&lt;tbl_df[1053 x 12]&gt;, ...</span>
-<span class="co">#&gt; $ n                                      &lt;int&gt; 366, 366, 366, 366, 25,...</span>
-<span class="co">#&gt; $ integral_sobre_media_dos_gastos        &lt;dbl&gt; 1.923441e+00, 1.930178e...</span>
-<span class="co">#&gt; $ disponibilidade_estritamente_crescente &lt;dbl&gt; 0.286563806, 0.19296448...</span>
-<span class="co">#&gt; $ iadl                                   &lt;dbl&gt; 6.871119e+00, 3.869226e...</span>
-<span class="co">#&gt; $ valor_nominal                          &lt;dbl&gt; 12514.202, 32119.427, -...</span>
-<span class="co">#&gt; $ valor_nominal_conservador              &lt;dbl&gt; -1.821371e+05, -1.76661...</span>
-<span class="co">#&gt; $ indicador_tempo                        &lt;dbl&gt; 0.9480874, 0.6530055, 0...</span>
-<span class="co">#&gt; $ suspeita_de_empocamento                &lt;dbl&gt; 0.107843578, 0.05744558...</span></pre></div>
+<span class="co">#&gt; [13:18:54] WARNING: amalgamation/../src/learner.cc:556: Loading model from XGBoost &lt; 1.0.0, consider saving it again for improved compatibility</span>
+<span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/reexports.html">glimpse</a></span>(<span class="no">descritores_mj</span>)
+<span class="co">#&gt; Rows: 856</span>
+<span class="co">#&gt; Columns: 14</span>
+<span class="co">#&gt; $ id                                     &lt;chr&gt; "877362ca453c6994eb320acb312d8…</span>
+<span class="co">#&gt; $ NO_ORGAO_MAXI                          &lt;chr&gt; "MINISTERIO DA JUSTICA E SEGUR…</span>
+<span class="co">#&gt; $ NO_UG                                  &lt;chr&gt; "ACADEMIA NACIONAL DA POLICIA …</span>
+<span class="co">#&gt; $ NO_ORGAO                               &lt;chr&gt; "DEPARTAMENTO DE POLICIA RODOV…</span>
+<span class="co">#&gt; $ NO_FONTE_RECURSO                       &lt;chr&gt; "RECURSOS NAO-FINANCEIROS DIRE…</span>
+<span class="co">#&gt; $ series_temporais                       &lt;list&gt; [&lt;tbl_df[1053 x 12]&gt;, &lt;tbl_df…</span>
+<span class="co">#&gt; $ n                                      &lt;int&gt; 366, 366, 366, 366, 25, 366, 3…</span>
+<span class="co">#&gt; $ integral_sobre_media_dos_gastos        &lt;dbl&gt; 1.923441e+00, 1.930178e+01, -3…</span>
+<span class="co">#&gt; $ disponibilidade_estritamente_crescente &lt;dbl&gt; 0.286563806, 0.192964481, 0.40…</span>
+<span class="co">#&gt; $ iadl                                   &lt;dbl&gt; 6.871119e+00, 3.869226e+01, 8.…</span>
+<span class="co">#&gt; $ valor_nominal                          &lt;dbl&gt; 12514.202, 32119.427, -72154.5…</span>
+<span class="co">#&gt; $ valor_nominal_conservador              &lt;dbl&gt; -182137.149, -17666.144, -7200…</span>
+<span class="co">#&gt; $ indicador_tempo                        &lt;dbl&gt; 0.9480874, 0.6530055, 0.844262…</span>
+<span class="co">#&gt; $ suspeita_de_empocamento                &lt;dbl&gt; 0.107843578, 0.057445586, 0.28…</span></pre></div>
 </div>
 </div>
   </div>

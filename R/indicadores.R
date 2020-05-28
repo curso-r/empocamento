@@ -27,6 +27,7 @@ calc_valor_nominal <- function(disponibilidade_liquida) {
   mean(disponibilidade_liquida)
 }
 
+#' calc_valor_nominal_conservador
 calc_valor_nominal_conservador <- function(disponibilidade_liquida, pagamentos_diarios) {
   mean(disponibilidade_liquida) - mean(pagamentos_diarios)*30
 }
@@ -34,6 +35,19 @@ calc_valor_nominal_conservador <- function(disponibilidade_liquida, pagamentos_d
 #' calc_tempo
 calc_tempo <- function(disponibilidades_liquida) {
   sum(disponibilidades_liquida > 0)/length(disponibilidades_liquida)
+}
+
+#' calc_ipdl
+calc_ipdl <- function(disponibilidade_liquida, lag_disponibilidade_liquida) {
+
+  disponibilidade_liquida <- trunc(disponibilidade_liquida)
+  dif <- disponibilidade_liquida - lag_disponibilidade_liquida
+  # dif < 0 significa débito.
+  # sempre vai ter pelo menos 1 NA.
+  debitos <- mean(abs(dif[dif < 0]), na.rm = TRUE)
+  debitos <- ifelse(is.nan(debitos) || debitos < 0, 0, debitos)
+
+  mean(disponibilidade_liquida -  debitos*0.5 > 0)
 }
 
 #' calc_iadl
@@ -73,6 +87,7 @@ calcula_descritores <- function(series_temporais) {
         NO_DIA_COMPLETO_dmy = NO_DIA_COMPLETO_dmy
       ),
       iadl = calc_iadl(disponibilidade_liquida, NO_DIA_COMPLETO_dmy),
+      ipdl = calc_ipdl(disponibilidade_liquida, dplyr::lag(disponibilidade_liquida, default = 0)),
       valor_nominal = calc_valor_nominal(disponibilidade_liquida),
       valor_nominal_conservador = calc_valor_nominal_conservador(disponibilidade_liquida, pagamento_diario),
       indicador_tempo = calc_tempo(disponibilidade_liquida)

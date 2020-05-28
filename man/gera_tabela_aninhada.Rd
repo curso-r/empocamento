@@ -6,9 +6,6 @@
 \usage{
 gera_tabela_aninhada(dados_com_disponibilidade_liquida)
 }
-\arguments{
-\item{dados_com_disponibilidade_liquida}{}
-}
 \description{
 gera_tabela_aninhada
 }

@@ -13,6 +13,8 @@ LazyData: true
 URL: https://github.com/curso-r/empocamento
 BugReports: https://github.com/curso-r/empocamento/issues
 RoxygenNote: 7.1.0
+Depends:
+    R (>= 3.5.0)
 Imports: 
     dplyr,
     purrr,
@@ -21,4 +23,15 @@ Imports:
     padr,
     stringr,
     magrittr,
-    workflows
+    workflows,
+    Matrix,
+    lubridate,
+    shinyWidgets,
+    highcharter
+Suggests:
+    xgboost,
+    shiny,
+    knitr,
+    rmarkdown,
+    reactable
+VignetteBuilder: knitr

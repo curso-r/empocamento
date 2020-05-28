@@ -39,6 +39,7 @@ library(ggplot2)
 library(empocamento)
 
 series_mj <- prepara(movimentacoes_diarias_mj)
+series_mec <- prepara(movimentacoes_diarias_mec)
 ```
 
 

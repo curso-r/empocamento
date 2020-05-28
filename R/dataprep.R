@@ -1,9 +1,6 @@
 #' gera_series_diarias_para_os_tres_itens
-#'
-#' @param dados
-#'
 gera_series_diarias_para_os_tres_itens <- function(dados) {
-  dados %>%
+  dados <- dados %>%
     dplyr::select(
       NO_ORGAO_MAXI,
       NO_ITEM_INFORMACAO,
@@ -37,8 +34,12 @@ gera_series_diarias_para_os_tres_itens <- function(dados) {
     dplyr::arrange(NO_DIA_COMPLETO_dmy) %>%
     dplyr::mutate(
       SALDORITEMINFORMAODIALANAMENT_acumulado = cumsum(SALDORITEMINFORMAODIALANAMENT)
-    ) %>%
-    padr::pad(group = c("NO_ORGAO_MAXI", "NO_ITEM_INFORMACAO", "NO_UG", "NO_ORGAO", "NO_FONTE_RECURSO"), by = "NO_DIA_COMPLETO_dmy", break_above = 10, interval = "day") %>%
+    )
+
+  dados <- suppressWarnings(dados %>%
+    padr::pad(group = c("NO_ORGAO_MAXI", "NO_ITEM_INFORMACAO", "NO_UG", "NO_ORGAO", "NO_FONTE_RECURSO"), by = "NO_DIA_COMPLETO_dmy", break_above = 13, interval = "day"))
+
+  dados <- dados %>%
     tidyr::fill(SALDORITEMINFORMAODIALANAMENT_acumulado) %>%
     dplyr::mutate(
       paded = !is.na(SALDORITEMINFORMAODIALANAMENT),
@@ -57,9 +58,6 @@ gera_series_diarias_para_os_tres_itens <- function(dados) {
 
 
 #' gera_disponibilidades_liquidas_diarias
-#'
-#' @param lista_dos_tres_itens
-#'
 gera_disponibilidades_liquidas_diarias <- function(lista_dos_tres_itens) {
 
   lista_dos_tres_itens$dados$saldo_diario %>%
@@ -113,9 +111,6 @@ gera_disponibilidades_liquidas_diarias <- function(lista_dos_tres_itens) {
 }
 
 #' gera_tabela_aninhada
-#'
-#' @param dados_com_disponibilidade_liquida
-#'
 gera_tabela_aninhada <- function(dados_com_disponibilidade_liquida) {
   dados_com_disponibilidade_liquida %>%
     dplyr::group_by(
@@ -128,9 +123,6 @@ gera_tabela_aninhada <- function(dados_com_disponibilidade_liquida) {
 }
 
 #' gera_id
-#'
-#' @param dados_aninhados
-#'
 gera_id <- function(dados_aninhados) {
   dados_aninhados %>%
     dplyr::mutate(
@@ -189,8 +181,8 @@ prepara <- function(dados_limsaque_pagto_obrig) {
 #' @export
 #'
 #' @examples
-#'
-#' series_mj <- empocamento::movimentacoes_diarias_mj %>%
+#' library(empocamento)
+#' series_mj <- movimentacoes_diarias_mj %>%
 #'   prepara() %>%
 #'   filtra_series_temporais_por_periodo(c("2019-01-01", "2019-11-01"))
 filtra_series_temporais_por_periodo <- function(dados_preparados, periodo) {
@@ -200,3 +192,5 @@ filtra_series_temporais_por_periodo <- function(dados_preparados, periodo) {
       .x %>% dplyr::filter(NO_DIA_COMPLETO_dmy %>% between(periodo[1], periodo[2]))
     }))
 }
+
+

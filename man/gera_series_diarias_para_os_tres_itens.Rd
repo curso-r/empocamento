@@ -6,9 +6,6 @@
 \usage{
 gera_series_diarias_para_os_tres_itens(dados)
 }
-\arguments{
-\item{dados}{}
-}
 \description{
 gera_series_diarias_para_os_tres_itens
 }

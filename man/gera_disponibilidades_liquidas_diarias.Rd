@@ -6,9 +6,6 @@
 \usage{
 gera_disponibilidades_liquidas_diarias(lista_dos_tres_itens)
 }
-\arguments{
-\item{lista_dos_tres_itens}{}
-}
 \description{
 gera_disponibilidades_liquidas_diarias
 }

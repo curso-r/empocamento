@@ -1,9 +1,25 @@
+if(!requireNamespace("tidyr", quietly = TRUE)){
+  install.packages("tidyr")
+}
+if(!requireNamespace("reactable", quietly = TRUE)){
+  install.packages("reactable")
+}
+if(!requireNamespace("stringr", quietly = TRUE)){
+  install.packages("stringr")
+}
+if(!requireNamespace("magrittr", quietly = TRUE)){
+  install.packages("magrittr")
+}
+library(stringr)
+library(reactable)
+library(magrittr)
+library(tidyr)
 indicadores_disponiveis <- ""
-dia_mais_recente <- dados_preparados_mas_sem_indicadores$series_temporais %>% purrr::map(~max(.x$NO_DIA_COMPLETO_dmy)) %>% reduce(max)
+dia_mais_recente <- dados_preparados_mas_sem_indicadores$series_temporais %>% purrr::map(~max(.x$NO_DIA_COMPLETO_dmy)) %>% purrr::reduce(max)
 um_ano_atras <- dia_mais_recente - lubridate::days(365)
 
 ui <- fluidPage(
-  useShinydashboard(),
+  shinyWidgets::useShinydashboard(),
   tags$script(src = "logneg.js"),
   h1("Explorador dos Perfis de Fluxo de Caixa"),
   tabsetPanel(
@@ -48,11 +64,11 @@ ui <- fluidPage(
         column(
           width = 8,
           reactable::reactableOutput("tabela"),
-          highchartOutput("st")
+          highcharter::highchartOutput("st")
         ),
         column(
           width = 4,
-          highchartOutput("dispersao"),
+          highcharter::highchartOutput("dispersao"),
           reactable::reactableOutput("info")
         )
       )
@@ -101,7 +117,7 @@ server <- function(input, output, session) {
 
   observe({
     indicadores_disponiveis <- dados() %>% dplyr::select(-(id:n)) %>% names
-    indicadores_disponiveis <- set_names(indicadores_disponiveis, str_replace_all(indicadores_disponiveis, "_", " "))
+    indicadores_disponiveis <- purrr::set_names(indicadores_disponiveis, str_replace_all(indicadores_disponiveis, "_", " "))
     shiny::updateSelectInput(session, "indice_x", choices = indicadores_disponiveis, selected = indicadores_disponiveis[1])
     shiny::updateSelectInput(session, "indice_y", choices = indicadores_disponiveis, selected = indicadores_disponiveis[2])
   })
@@ -140,7 +156,7 @@ server <- function(input, output, session) {
       )
   })
 
-  output$st <- renderHighchart({
+  output$st <- highcharter::renderHighchart({
     validate(
       need(id_selecionado(), "linha não selecionada.")
     )
@@ -150,16 +166,16 @@ server <- function(input, output, session) {
     pagamento_diario <- selec %$% xts::xts(round(pagamento_diario, 8), NO_DIA_COMPLETO_dmy)
     saldo_diario <- selec %$% xts::xts(round(saldo_diario, 8), NO_DIA_COMPLETO_dmy)
 
-    highchart(type = "chart") %>%
-      hc_xAxis(type = "datetime") %>%
-      hc_add_series(disponibilidade_liquida, type = "area", name = "Disponibilidade Líquida") %>%
-      hc_add_series(obrigacoes_a_pagar_diario, type = "line", name = "Obrigações a Pagar") %>%
-      hc_add_series(pagamento_diario, type = "line", name = "Pagamentos") %>%
-      hc_add_series(saldo_diario, type = "line", name = "Saldo Diário") %>%
-      hc_plotOptions(area = list(fillOpaticy = 0.3))
+    highcharter::highchart(type = "chart") %>%
+      highcharter::hc_xAxis(type = "datetime") %>%
+      highcharter::hc_add_series(disponibilidade_liquida, type = "area", name = "Disponibilidade Líquida") %>%
+      highcharter::hc_add_series(obrigacoes_a_pagar_diario, type = "line", name = "Obrigações a Pagar") %>%
+      highcharter::hc_add_series(pagamento_diario, type = "line", name = "Pagamentos") %>%
+      highcharter::hc_add_series(saldo_diario, type = "line", name = "Saldo Diário") %>%
+      highcharter::hc_plotOptions(area = list(fillOpaticy = 0.3))
   })
 
-  output$dispersao <- renderHighchart({
+  output$dispersao <- highcharter::renderHighchart({
     dados() %>%
       dplyr::mutate(
         x := !!rlang::sym(input$indice_x),
@@ -170,12 +186,12 @@ server <- function(input, output, session) {
       highcharter::hchart(
         type = "scatter"
       ) %>%
-      hc_add_event_point(event = "click") %>%
-      hc_yAxis(type = ifelse(input$type_y, "logarithmic", "linear"),
+      highcharter::hc_add_event_point(event = "click") %>%
+      highcharter::hc_yAxis(type = ifelse(input$type_y, "logarithmic", "linear"),
                allowNegativeLog = TRUE) %>%
-      hc_xAxis(type = ifelse(input$type_x, "logarithmic", "linear"),
+      highcharter::hc_xAxis(type = ifelse(input$type_x, "logarithmic", "linear"),
                allowNegativeLog = TRUE) %>%
-      hc_tooltip(
+      highcharter::hc_tooltip(
         headerFormat = '<span style="color:{point.color}">●</span> Clique para expandir<br/>',
         pointFormat = 'X <b>{point.x}</b><br/>Y <b>{point.y}</b><br/>UG <b>{point.NO_UG}</b><br/>FONTE <b>{point.NO_FONTE_RECURSO}</b>')
   })

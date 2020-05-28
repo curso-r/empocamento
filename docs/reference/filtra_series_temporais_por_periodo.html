@@ -137,10 +137,10 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='no'>series_mj</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>empocamento</span><span class='kw ns'>::</span><span class='no'><a href='movimentacoes_diarias_mj.html'>movimentacoes_diarias_mj</a></span> <span class='kw'>%&gt;%</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>empocamento</span>)
+<span class='no'>series_mj</span> <span class='kw'>&lt;-</span> <span class='no'>movimentacoes_diarias_mj</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='prepara.html'>prepara</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>filtra_series_temporais_por_periodo</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"2019-01-01"</span>, <span class='st'>"2019-11-01"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: datetime variable does not vary for 83 of the groups, no padding applied on this / these group(s)</span></div><div class='output co'>#&gt; <span class='error'>Error in between(., periodo[1], periodo[2]): could not find function "between"</span></div></pre>
+  <span class='fu'>filtra_series_temporais_por_periodo</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"2019-01-01"</span>, <span class='st'>"2019-11-01"</span>))</div><div class='output co'>#&gt; <span class='error'>Error in between(., periodo[1], periodo[2]): could not find function "between"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

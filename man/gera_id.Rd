@@ -6,9 +6,6 @@
 \usage{
 gera_id(dados_aninhados)
 }
-\arguments{
-\item{dados_aninhados}{}
-}
 \description{
 gera_id
 }
