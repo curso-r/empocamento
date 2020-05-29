@@ -18,7 +18,7 @@ calc_integral_sobre_media_dos_gastos <- function(disponibilidade_liquida, pagame
   soma_dos_gastos <- sum(pagamento_diario)
   soma_dos_gastos <- ifelse(abs(soma_dos_gastos) < 1, 1, soma_dos_gastos)
   resp <- integral/soma_dos_gastos
-  resp <- resp * 365/length(dias_no_periodo)
+  resp <- resp * 365/length(dias_no_periodo)/1e8
   resp
 }
 
@@ -69,7 +69,7 @@ calc_iadl <- function(disponibilidade_liquida, order_by) {
   debitos <- ifelse(debitos < 1, 1, debitos)
 
   resp <- disp_positiva_media/debitos
-  resp <- resp * 365/length(dias_no_periodo)
+  resp <- resp * 365/length(dias_no_periodo)/10e5
   resp
 }
 
